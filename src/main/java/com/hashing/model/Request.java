@@ -4,17 +4,28 @@ import java.util.Objects;
 
 public class Request {
 
-  private int hash;
+  private final int hash;
 
-  private String content;
+  private final String key;
 
-  public Request(String content) {
+  private final String content;
+
+  public Request(String key, String content) {
+    this.key = key;
     this.content = content;
-    this.hash = Objects.hash(content);
+    this.hash = Objects.hash(key);
   }
 
   public int getHash() {
-    return hash;
+    return this.hash;
+  }
+
+  public String getContent() {
+    return this.content;
+  }
+
+  public String getKey() {
+    return key;
   }
 
   @Override
@@ -22,7 +33,7 @@ public class Request {
     StringBuilder strb = new StringBuilder("\n\nRequest");
 
     strb.append("\nhash = " + hash);
-    strb.append("\ncontent = " + content);
+    strb.append("\nkey = " + key);
 
     return strb.toString();
   }

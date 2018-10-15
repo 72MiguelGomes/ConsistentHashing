@@ -27,7 +27,9 @@ public class RingTest {
     ring.addNode(node);
     ring.addNode(node1);
 
-    requests.forEach(ring::addValue);
+    requests.stream()
+        .map(key -> new Request(key, key))
+        .forEach(ring::addValue);
 
     ring.printRing();
 

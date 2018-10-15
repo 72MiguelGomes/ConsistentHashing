@@ -1,6 +1,5 @@
 package com.hashing.model;
 
-import java.util.Objects;
 import java.util.TreeMap;
 
 public class Ring {
@@ -12,15 +11,15 @@ public class Ring {
     nodes.put(node.getHash(), node);
   }
 
-  public void addValue(String value) {
+  public void addValue(Request request) {
 
-    int hash = Objects.hash(value);
+    int hash = request.getHash();
 
     Integer nodeHash = nodes.ceilingKey(hash);
 
     Node node = nodes.get(nodeHash != null ? nodeHash : nodes.firstKey());
 
-    node.addRequest(new Request(value));
+    node.addRequest(request);
   }
 
   public void printRing() {

@@ -7,9 +7,25 @@ public class Ring {
 
   private TreeMap<Integer, Node> nodes = new TreeMap<>();
 
-  public void addNode(Node node) {
-    // TODO: Re-Balance
-    nodes.put(node.getHash(), node);
+  public void addNode(Node newNode) {
+    int newNodeHash = newNode.getHash();
+
+    if (!nodes.isEmpty()) {
+      Node nodeToMigrate = getNode(newNodeHash);
+
+      // ######## Concurrency Problem
+      nodeToMigrate
+          .getRequestsToMigrate(newNodeHash)
+          .parallelStream()
+          .forEach(newNode::addRequest);
+
+      nodes.put(newNode.getHash(), newNode);
+
+      nodeToMigrate.removeMigratedItems(newNodeHash);
+      // ######## Concurrency Problem
+    } else {
+      nodes.put(newNode.getHash(), newNode);
+    }
   }
 
   public void addValue(Request request) {

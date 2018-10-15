@@ -13,23 +13,22 @@ public class RingTest {
 
     List<String> requests = Arrays.asList(
         "test",
-        "test2",
         "adasdadsasd",
         "kkkkk",
-        "olsslsoslo"
+        "olsslsoslo",
+        "asdoasls"
     );
 
-    Node node = new Node("192.168.1.1");
-
-    Node node1 = new Node("192.168.10.1");
-
     Ring ring = new Ring();
-    ring.addNode(node);
-    ring.addNode(node1);
+    ring.addNode(new Node("192.168.1.1"));
+    ring.addNode(new Node("192.168.10.1"));
+    ring.addNode(new Node("10.10.22.1"));
 
     requests.stream()
         .map(key -> new Request(key, key))
         .forEach(ring::addValue);
+
+    //ring.addNode(new Node("10.10.22.1"));
 
     ring.printRing();
 

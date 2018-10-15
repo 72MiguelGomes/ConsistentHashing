@@ -28,6 +28,19 @@ public class Ring {
     }
   }
 
+  public void removeNode(Node nodeToRemove) {
+
+    int nodeHash = nodeToRemove.getHash();
+
+    Node fallbackNode = getNode(nodeHash + 1);
+
+    nodes.get(nodeHash)
+        .getAllRequests()
+        .forEach(fallbackNode::addRequest);
+
+    nodes.remove(nodeHash);
+  }
+
   public void addValue(Request request) {
 
     int hash = request.getHash();

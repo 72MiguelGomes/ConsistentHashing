@@ -1,6 +1,7 @@
 package com.hashing.model;
 
 import java.text.MessageFormat;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -32,6 +33,10 @@ public class Node {
     new HashSet<>(data.navigableKeySet()
         .headSet(hash, true))
         .forEach(data::remove);
+  }
+
+  public Collection<Request> getAllRequests() {
+    return data.values();
   }
 
   public void addRequest(Request request) {

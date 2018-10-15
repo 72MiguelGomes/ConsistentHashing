@@ -1,9 +1,9 @@
 package com.hashing.model;
 
-import static org.junit.Assert.*;
-
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class RingTest {
@@ -33,6 +33,10 @@ public class RingTest {
 
     ring.printRing();
 
+    requests.stream()
+        .map(ring::getRequest)
+        .filter(Objects::nonNull)
+        .forEach(Assert::assertNotNull);
   }
 
 }

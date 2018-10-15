@@ -25,6 +25,10 @@ public class Node {
     return hash;
   }
 
+  public Request getRequest(int hash) {
+    return this.data.get(hash);
+  }
+
   @Override
   public String toString() {
 

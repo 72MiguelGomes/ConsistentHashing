@@ -30,6 +30,8 @@ public class Ring {
 
   public void removeNode(Node nodeToRemove) {
 
+    // ######## Concurrency Problem
+
     int nodeHash = nodeToRemove.getHash();
 
     Node fallbackNode = getNode(nodeHash + 1);
@@ -39,6 +41,7 @@ public class Ring {
         .forEach(fallbackNode::addRequest);
 
     nodes.remove(nodeHash);
+    // ######## Concurrency Problem
   }
 
   public void addValue(Request request) {

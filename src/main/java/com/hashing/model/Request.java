@@ -37,4 +37,18 @@ public class Request {
 
     return strb.toString();
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Request request = (Request) o;
+    return hash == request.hash &&
+        Objects.equals(key, request.key) &&
+        Objects.equals(content, request.content);
+  }
 }

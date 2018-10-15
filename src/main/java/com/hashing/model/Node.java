@@ -61,4 +61,18 @@ public class Node {
 
     return strb.toString();
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Node node = (Node) o;
+    return hash == node.hash &&
+        Objects.equals(ip, node.ip) &&
+        Objects.equals(data, node.data);
+  }
 }

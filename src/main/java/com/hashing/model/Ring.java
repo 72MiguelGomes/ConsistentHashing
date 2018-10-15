@@ -55,4 +55,15 @@ public class Ring {
     return node.getRequest(hash);
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Ring ring = (Ring) o;
+    return Objects.equals(nodes, ring.nodes);
+  }
 }
